@@ -225,8 +225,6 @@ export const registerNewUser = async (req, res) => {
       return sendMessageResponse(res, notCreated.code, notCreated.message);
     }
 
-    const createdBank = await createBankForUser(createdUser.id);
-
     delete createdUser.password;
     delete createdUser.updatedAt;
 
@@ -240,7 +238,7 @@ export const registerNewUser = async (req, res) => {
     //   uniqueString
     // );
 
-    return sendDataResponse(res, 201, { createdUser });
+    return sendDataResponse(res, 202, { createdUser });
   } catch (err) {
     // Error
     const serverError = new RegistrationServerErrorEvent(
@@ -533,14 +531,13 @@ export const deleteUser = async (req, res) => {
 
     await deleteUserById(userId);
 
-    const updatedUserArray = await findAllUsers()
-    
-    return sendDataResponse(res, 200, {
+    const updatedUserArray = await findAllUsers();
+
+    return sendDataResponse(res, 202, {
       deletedUser: foundUser,
       updatedUserArray: updatedUserArray,
       message: `User ${foundUser.email} deleted`,
     });
-
   } catch (err) {
     //
     const serverError = new ServerErrorEvent(req.user, `delete user by ID`);

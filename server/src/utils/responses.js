@@ -21,6 +21,11 @@ export const EVENT_MESSAGES = {
   eventNotFound: `Failed to find event`,
   createEventFail: `Failed to create event`,
   eventNotDeleted: `Failed to delete event`,
+  // Designs
+  designTag: `Design database`,
+  designNotFound: `Failed to find design`,
+  createDesignFail: `Failed to create design`,
+  designNotDeleted: `Failed to delete design`,
   // Users
   userTag: `User databased`,
   userNotFound: `Failed to find user/s`,

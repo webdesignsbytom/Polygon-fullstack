@@ -24,6 +24,7 @@ model User {
   password       String    @db.VarChar(250)
   role           Role      @default(USER)
   profile        Profile?
+  Design         Design[]
   lastLoggedIn   DateTime  @updatedAt
   isVerified     Boolean   @default(false)
   agreedToTerms  Boolean   @default(false)
@@ -48,6 +49,15 @@ model Profile {
   isPrivate       Boolean   @default(false)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime? @updatedAt
+}
+
+model Design {
+  id           String    @id @default(uuid())
+  designString String
+  userId       String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime? @updatedAt
 }
 
 // EVENTS

@@ -13,6 +13,7 @@ Current Address [Live Polygon Cutter Link](https://main--velvety-blini-fa7e84.ne
   - [General info](#general-info)
   - [Technologies](#technologies)
   - [Run this project locally](#run-this-project-locally)
+  - [Testing](#testing)
 
 ## General info
 
@@ -22,7 +23,7 @@ The points can be saved to a users database.
 
 <img src='./assets/images/polygon_home.png' alt='home page' style='width: 300px; height: 200px;' />
 
-Server deployment with Vercel @ [https://webdesignsbytom-app.vercel.app/](https://webdesignsbytom-app.vercel.app/)
+Server deployment with Vercel @ [https://polygon-fullstack.vercel.app/](https://polygon-fullstack.vercel.app/)
 
 ## Technologies
 
@@ -38,3 +39,8 @@ Backend: Express, Prisma, JavaScript
 2. Navigate to client and server files and run
 3. `npm install`
 4. `npm start`
+
+## Testing
+
+API tests run through Insomnia testing suit.
+Check server dir for test files.
