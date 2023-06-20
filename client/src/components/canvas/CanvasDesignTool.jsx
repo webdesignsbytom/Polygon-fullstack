@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-function TestPage() {
+function CanvasDesignTool() {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const marketNumRef = useRef(1);
@@ -15,10 +15,12 @@ function TestPage() {
     // returns <context>
     const canvas = canvasRef.current;
     console.log('2. canvas', canvas);
-    canvas.width = window.innerWidth * 2;
-    canvas.height = window.innerHeight * 2;
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;
+    var rect = canvas.parentNode.getBoundingClientRect();
+    console.log('AAAAAAAA', rect);
+    canvas.width = rect.width * 2;
+    canvas.height = rect.height * 2;
+    canvas.style.width = `${rect.width}px`;
+    canvas.style.height = `${rect.height}px`;
     // set canvas to visible colour
     canvas.style.backgroundColor = '#bee0ec';
 
@@ -44,8 +46,8 @@ function TestPage() {
 
     contextRef.current.beginPath();
     contextRef.current.arc(
-      nativeEvent.x,
-      nativeEvent.y,
+      nativeEvent.offsetX,
+      nativeEvent.offsetY,
       1,
       0,
       2 * Math.PI,
@@ -54,8 +56,8 @@ function TestPage() {
     contextRef.current.stroke();
     contextRef.current.fillText(
       marketNumRef.current,
-      nativeEvent.x + 5,
-      nativeEvent.y + 5
+      nativeEvent.offsetX + 5,
+      nativeEvent.offsetY + 5
     );
     marketNumRef.current++;
     console.log('9B. contextRef.current', contextRef.current);
@@ -84,13 +86,11 @@ function TestPage() {
       contextRef.current.beginPath();
       contextRef.current.moveTo(start.xpos, start.ypos);
       contextRef.current.lineTo(finish.xpos, finish.ypos);
-      contextRef.current.stroke()
-
+      contextRef.current.stroke();
     }
   };
-
 
   return <canvas ref={canvasRef} onMouseUp={createMarker} />;
 }
 
-export default TestPage;
+export default CanvasDesignTool;
