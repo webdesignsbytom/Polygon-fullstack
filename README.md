@@ -21,7 +21,7 @@ Using canvas and useRed we can plot the points that a user makes one the screen.
 These points can always be manipulated later.
 The points can be saved to a users database.
 
-![]()
+![](https://github.com/webdesignsbytom/Polygon-fullstack/blob/main/assets/gif/PolygonTourGif.gif?raw=true)
 
 <img src='./assets/images/polygon_home.png' alt='home page' style='width: 300px; height: 200px;' />
 
