@@ -1,64 +1,47 @@
 import React, { useEffect, useState, useRef } from 'react';
-// Api
-import client from '../../api/client';
 
-function TestPage({ props }) {
+function TestPage() {
   const canvasRef = useRef(null);
+  const contextRef = useRef(null);
+  // Returns null
+  console.log('1. canvasRef', canvasRef);
+  console.log('6. contextRef', contextRef);
 
-  const draw = (ctx, frameCount) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.fillStyle = '#000000';
-    ctx.beginPath();
-    ctx.arc(50, 100, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
-    ctx.fill();
-  };
   useEffect(() => {
+    // returns <context>
     const canvas = canvasRef.current;
+    console.log('2. canvas', canvas);
+    canvas.width = window.innerWidth * 2;
+    canvas.height = window.innerHeight * 2;
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
+    // set canvas to visible colour
+    canvas.style.backgroundColor = '#bee0ec';
+
+    console.log('3. canvas.width', canvas.width);
+    console.log('4. canvas.style', canvas.style);
+
     const context = canvas.getContext('2d');
-    let frameCount = 0;
-    let animationFrameId;
+    console.log('5. context', context);
 
-    let canvasBgColour = `#00FF00`;
-    // var rect = canvas.parentNode.getBoundingClientRect();
-    // canvas.width = rect.width;
-    // canvas.height = rect.height;
+    context.scale(2, 2);
+    context.lineCap = 'round';
+    context.strokeStyle = 'black';
+    context.lineWidth = 5;
+    contextRef.current = context;
+    console.log('7. contextRef', contextRef);
+    console.log('8. contextRef.current', contextRef.current);
+    
+  }, []);
 
-    // Mouse size
-    let mouse = {
-      x: null,
-      y: null,
-      radius: (canvas.height / 90) * (canvas.width / 90),
-    };
+  const createMarker = ({ nativeEvent }) => {
+    console.log('nativeEvent', nativeEvent);
+    contextRef.current.beginPath();
+    contextRef.current.arc(50, 50, 1, 0, 2 * Math.PI, true);
+    contextRef.current.stroke();
+  }
 
-    // Draw canvas
-    context.fillStyle = canvasBgColour;
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    console.log('canvas', canvas);
-    console.log('canvasref', canvasRef);
-    console.log('canvasref', canvasRef.current);
-    // // Mouse position
-    // context.addEventListener('mousemove', function (e) {
-    //   mouse.x = e.x;
-    //   mouse.y = e.y;
-    //   console.log('Mouse', e);
-    // });
-
-    // Draw canvas
-
-    //Our draw came here
-    const render = () => {
-      frameCount++;
-      draw(context, frameCount);
-      animationFrameId = window.requestAnimationFrame(render);
-    };
-    render();
-
-    return () => {
-      window.cancelAnimationFrame(animationFrameId);
-    };
-  }, [draw]);
-
-  return <canvas ref={canvasRef} {...props} />;
+  return <canvas ref={canvasRef} onMouseUp={createMarker} />;
 }
 
 export default TestPage;

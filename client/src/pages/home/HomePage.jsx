@@ -15,7 +15,6 @@ function HomePage() {
 
   const navigateToPage = (event) => {
     const { id } = event.target;
-    console.log('ssddd', id);
     setActiveNav(id);
     navigate(`${id}`);
   };
