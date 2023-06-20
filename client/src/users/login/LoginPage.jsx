@@ -73,7 +73,7 @@ function LoginPage() {
 
   return (
     <div className='h-screen overflow-hidden grid bg-gray-50 dark:bg-black dark:text-gray-100'>
-      <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+      <section className='grid h-full grid-rows-reg'>
         <Navbar />
         <main className='bg-white main__bg grid items-center justify-center'>
           <div className='grid justify-center items-center w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700'>

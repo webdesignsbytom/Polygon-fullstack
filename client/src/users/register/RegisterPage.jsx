@@ -14,7 +14,7 @@ function RegisterPage() {
   
   return (
     <div className='bg-black main__bg h-screen grid'>
-      <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
+      <section className='grid h-full overflow-hidden grid-rows-reg'>
         <Navbar />
         <main className='grid bg-white grid-rows-reg main__bg h-full items-center justify-center'>
           <section className='bg-white rounded p-4 shadow my-10 lg:my-0'>

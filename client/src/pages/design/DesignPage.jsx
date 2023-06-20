@@ -10,7 +10,7 @@ function DesignPage() {
   const { setActiveNav } = useContext(ToggleContext);
 
   useEffect(() => {
-    setActiveNav('/');
+    setActiveNav('/design');
   }, []);
   
   const clearDataPoints = (event) => {
