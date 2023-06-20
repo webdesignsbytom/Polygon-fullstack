@@ -21,6 +21,8 @@ Using canvas and useRed we can plot the points that a user makes one the screen.
 These points can always be manipulated later.
 The points can be saved to a users database.
 
+![]()
+
 <img src='./assets/images/polygon_home.png' alt='home page' style='width: 300px; height: 200px;' />
 
 Server deployment with Vercel @ [https://polygon-fullstack.vercel.app/](https://polygon-fullstack.vercel.app/)

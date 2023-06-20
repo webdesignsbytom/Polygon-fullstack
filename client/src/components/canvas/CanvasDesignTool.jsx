@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 
-function CanvasDesignTool() {
-  const canvasRef = useRef(null);
-  const contextRef = useRef(null);
-  const marketNumRef = useRef(1);
-  const lineRef = useRef([]);
+function CanvasDesignTool({ canvasRef, contextRef, marketNumRef, lineRef }) {
+  // const canvasRef = useRef(null);
+  // const contextRef = useRef(null);
+  // const marketNumRef = useRef(1);
+  // const lineRef = useRef([]);
 
   console.log('10. lineRef', lineRef);
   // Returns null
@@ -74,20 +74,20 @@ function CanvasDesignTool() {
 
     lineRef.current = tempStore;
 
-    if (tempStore.length > 2) {
-      console.log('TTTTTTTTTTT', tempStore);
+    // if (tempStore.length > 2) {
+    //   console.log('TTTTTTTTTTT', tempStore);
 
-      // Draw line from start to finish
-      let start = tempStore[0];
-      let finish = tempStore[tempStore.length - 1];
-      console.log('start.', start);
-      console.log('finsi', finish);
+    //   // Draw line from start to finish
+    //   let start = tempStore[0];
+    //   let finish = tempStore[tempStore.length - 1];
+    //   console.log('start.', start);
+    //   console.log('finsi', finish);
 
-      contextRef.current.beginPath();
-      contextRef.current.moveTo(start.xpos, start.ypos);
-      contextRef.current.lineTo(finish.xpos, finish.ypos);
-      contextRef.current.stroke();
-    }
+    //   contextRef.current.beginPath();
+    //   contextRef.current.moveTo(start.xpos, start.ypos);
+    //   contextRef.current.lineTo(finish.xpos, finish.ypos);
+    //   contextRef.current.stroke();
+    // }
   };
 
   return <canvas ref={canvasRef} onMouseUp={createMarker} />;
