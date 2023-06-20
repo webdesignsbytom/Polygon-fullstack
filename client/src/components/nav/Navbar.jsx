@@ -24,7 +24,7 @@ function Navbar() {
   };
 
   return (
-    <nav className='h-full relative z-30 grid grid-cols-a1a bg-yellow-400 py-2 border-b-2 border-solid border-black'>
+    <nav className='h-full relative z-30 grid grid-cols-reg bg-yellow-400 py-2 border-b-2 border-solid border-black'>
       <section className='grid items-center justify-center pl-4'>
         <Link className='no__highlights' to='/'>
           <img
@@ -35,14 +35,12 @@ function Navbar() {
         </Link>
       </section>
 
-      <section className='text-center p-2'>a</section>
-
       {/* Phone Nav */}
       <nav
         onClick={() => {
           toggleNavbarOpenClosed();
         }}
-        className='grid items-center justify-center lg:hidden no__highlights pr-4'
+        className='grid items-center justify-end lg:hidden no__highlights pr-4'
       >
         <span className='cursor-pointer text-black hover:text-hover-grey'>
           <svg
@@ -51,7 +49,7 @@ function Navbar() {
             viewBox='0 0 24 24'
             strokeWidth='1.5'
             stroke='currentColor'
-            className='w-10 h-10 transition no__highlights duration-200 ease-in-out select-none no__highlights focus:scale-125 active:scale-125'
+            className='w-10 h-10 transition no__highlights duration-200 ease-in-out select-none focus:scale-125 active:scale-125'
             data-te-animation-init
           >
             <path
@@ -64,38 +62,27 @@ function Navbar() {
       </nav>
 
       {/* Navigation */}
-      <section className='hidden lg:grid'>
+      <section className='hidden lg:grid justify-end'>
         <div className='grid items-center pr-4'>
-          <ul className='grid grid-flow-col w-fit justify-end gap-4'>
-            <li className={activeNav === '/' ? '' : ''}>
+          <ul className='grid grid-flow-col w-fit justify-end gap-4 font-semibold'>
+            <li className={activeNav === '/' ? 'text-gray-600 hover:text-gray-700 active:scale-95' : 'hover:text-gray-700 active:scale-95'}>
               <Link className='w-full' to='/'>
                 Home
               </Link>
             </li>
-            <li className={activeNav === '/games' ? '' : ''}>
-              <Link className='w-full' to='/games'>
-                Games
-              </Link>
-            </li>
-            <li className={activeNav === '/games/texas-holdem' ? '' : ''}>
-              <Link className='w-full' to='/games/texas-holdem'>
-                Texas Holdem
-              </Link>
-            </li>
-
-            <li className={activeNav === '/games/blackjack' ? '' : ''}>
-              <Link className='w-full' to='/games/blackjack'>
-                Blackjack
+            <li className={activeNav === '/design' ? 'text-gray-600 hover:text-gray-700 active:scale-95' : 'hover:text-gray-700 active:scale-95'}>
+              <Link className='w-full' to='/design'>
+                Design
               </Link>
             </li>
             {!user.email && (
               <>
-                <li className={activeNav === '/login' ? '' : ''}>
+                <li className={activeNav === '/login' ? 'text-gray-600 hover:text-gray-700 active:scale-95' : 'hover:text-gray-700 active:scale-95'}>
                   <Link className='w-full' to='/Login'>
                     Login
                   </Link>
                 </li>
-                <li className={activeNav === '/sign-up' ? '' : ''}>
+                <li className={activeNav === '/sign-up' ? 'text-gray-600 hover:text-gray-700 active:scale-95' : 'hover:text-gray-700 active:scale-95'}>
                   <Link className='w-full' to='/sign-up'>
                     Sign Up
                   </Link>
@@ -103,7 +90,7 @@ function Navbar() {
               </>
             )}
             {(user.role === 'ADMIN' || user.role === 'DEVELOPER') && (
-              <li className={activeNav === '/admin' ? '' : ''}>
+              <li className={activeNav === '/admin' ? 'text-gray-600 hover:text-gray-700 active:scale-95' : 'hover:text-gray-700 active:scale-95'}>
                 <Link className='w-full' to='/admin'>
                   Admin
                 </Link>
@@ -135,37 +122,16 @@ function Navbar() {
               </li>
               <li
                 className={
-                  activeNav === '/games'
+                  activeNav === '/design'
                     ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-yellow-700 text-gray-800 font-semibold'
                     : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-yellow-500 text-gray-800 font-semibold'
                 }
               >
-                <Link className='w-full' to='/games'>
-                  Games
+                <Link className='w-full' to='/design'>
+                  Design
                 </Link>
               </li>
-              <li
-                className={
-                  activeNav === '/games/texas-holdem'
-                    ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-yellow-700 text-gray-800 font-semibold'
-                    : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-yellow-500 text-gray-800 font-semibold'
-                }
-              >
-                <Link className='w-full' to='/games/texas-holdem'>
-                  Texas Holdem
-                </Link>
-              </li>
-              <li
-                className={
-                  activeNav === '/games/blackjack'
-                    ? 'w-full no__highlights nav__bg hover:bg-green-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-yellow-700 text-gray-800 font-semibold'
-                    : 'w-full no__highlights nav__bg hover:bg-blue-500 active:scale-95 grid py-2 outline-2 outline outline-black bg-yellow-500 text-gray-800 font-semibold'
-                }
-              >
-                <Link className='w-full' to='/games/blackjack'>
-                  Blackjack
-                </Link>
-              </li>
+
               {!user.email && (
                 <>
                   <li
