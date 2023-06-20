@@ -29,8 +29,11 @@ function DesignPage() {
             <article>
               <h1 className='text-xl font-semibold'>Design Your Polygon</h1>
             </article>
-            <div>
+            <div className='flex gap-4'>
               <button className='px-4 py-2 outline-black outline outline-2 active:scale-95 no__highlights bg-yellow-400 hover:bg-yellow-100 rounded-xl'>
+                Draw
+              </button>
+              <button className='px-4 py-2 outline-black outline outline-2 active:scale-95 no__highlights bg-red-400 hover:bg-red-100 rounded-xl'>
                 Reset
               </button>
             </div>
