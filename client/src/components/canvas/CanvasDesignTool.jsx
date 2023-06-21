@@ -1,42 +1,33 @@
 import React, { useEffect, useRef } from 'react';
 
-function CanvasDesignTool({ canvasRef, contextRef, marketNumRef, lineRef }) {
-  // const canvasRef = useRef(null);
-  // const contextRef = useRef(null);
-  // const marketNumRef = useRef(1);
-  // const lineRef = useRef([]);
-
-  console.log('10. lineRef', lineRef);
-  // Returns null
-  console.log('1. canvasRef', canvasRef);
-  console.log('6. contextRef', contextRef);
-
+function CanvasDesignTool({
+  canvasRef,
+  contextRef,
+  marketNumRef,
+  lineRef,
+  dataCollection,
+  setDataCollection,
+}) {
   useEffect(() => {
     // returns <context>
     const canvas = canvasRef.current;
-    console.log('2. canvas', canvas);
     var rect = canvas.parentNode.getBoundingClientRect();
-    console.log('AAAAAAAA', rect);
+
     canvas.width = rect.width * 2;
     canvas.height = rect.height * 2;
     canvas.style.width = `${rect.width}px`;
     canvas.style.height = `${rect.height}px`;
+
     // set canvas to visible colour
     canvas.style.backgroundColor = '#bee0ec';
 
-    console.log('3. canvas.width', canvas.width);
-    console.log('4. canvas.style', canvas.style);
-
     const context = canvas.getContext('2d');
-    console.log('5. context', context);
 
     context.scale(2, 2);
     context.lineCap = 'round';
     context.strokeStyle = 'black';
     context.lineWidth = 5;
     contextRef.current = context;
-    console.log('7. contextRef', contextRef);
-    console.log('8. contextRef.current', contextRef.current);
   }, []);
 
   const createMarker = ({ nativeEvent }) => {
@@ -71,23 +62,9 @@ function CanvasDesignTool({ canvasRef, contextRef, marketNumRef, lineRef }) {
       ypos: offsetY,
     };
     tempStore.push(newObj);
+    setDataCollection([...dataCollection, newObj]);
 
     lineRef.current = tempStore;
-
-    // if (tempStore.length > 2) {
-    //   console.log('TTTTTTTTTTT', tempStore);
-
-    //   // Draw line from start to finish
-    //   let start = tempStore[0];
-    //   let finish = tempStore[tempStore.length - 1];
-    //   console.log('start.', start);
-    //   console.log('finsi', finish);
-
-    //   contextRef.current.beginPath();
-    //   contextRef.current.moveTo(start.xpos, start.ypos);
-    //   contextRef.current.lineTo(finish.xpos, finish.ypos);
-    //   contextRef.current.stroke();
-    // }
   };
 
   return <canvas ref={canvasRef} onMouseUp={createMarker} />;

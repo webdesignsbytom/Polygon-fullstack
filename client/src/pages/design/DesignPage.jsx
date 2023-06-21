@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 // Components
 import Navbar from '../../components/nav/Navbar';
 import DesignDataBar from '../../components/design/DesignDataBar';
@@ -15,6 +15,8 @@ function DesignPage() {
   const lineRef = useRef([]);
   const emptyRef = useRef([]);
 
+  const [dataCollection, setDataCollection] = useState([]);
+
   useEffect(() => {
     setActiveNav('/design');
   }, []);
@@ -23,6 +25,14 @@ function DesignPage() {
     event.preventDefault();
     console.log('CLEAR', event.target.id);
     lineRef.current = emptyRef.current;
+    contextRef.current.clearRect(
+      0,
+      0,
+      canvasRef.current.width,
+      canvasRef.current.height
+    );
+    marketNumRef.current = 1;
+    setDataCollection([]);
   };
 
   const drawConnectingLines = () => {
@@ -92,13 +102,20 @@ function DesignPage() {
               contextRef={contextRef}
               marketNumRef={marketNumRef}
               lineRef={lineRef}
+              setDataCollection={setDataCollection}
+              dataCollection={dataCollection}
               drawConnectingLines={drawConnectingLines}
             />
           </div>
         </section>
         {/* data bar */}
         <section className='grid'>
-          <DesignDataBar clearDataPoints={clearDataPoints} />
+          <DesignDataBar
+            dataCollection={dataCollection}
+            setDataCollection={setDataCollection}
+            lineRef={lineRef}
+            clearDataPoints={clearDataPoints}
+          />
         </section>
       </main>
     </div>
