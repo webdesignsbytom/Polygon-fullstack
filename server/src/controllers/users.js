@@ -44,13 +44,6 @@ import { createBankForUser } from '../domain/bank.js';
 // Password hash
 const hashRate = 8;
 
-// export const sendTestyEmail = async (req, res) => {
-//   console.log('testin');
-//   const { email } = req.params;
-//   console.log('email', email);
-//   await testEmail(email);
-// };
-
 export const getAllUsers = async (req, res) => {
   console.log('getAllUsers');
   try {
@@ -66,11 +59,6 @@ export const getAllUsers = async (req, res) => {
       return sendMessageResponse(res, notFound.code, notFound.message);
     }
 
-    foundUsers.forEach((user) => {
-      delete user.password;
-    });
-
-    // myEmitterUsers.emit('get-all-users', req.user);
     return sendDataResponse(res, 200, { users: foundUsers });
   } catch (err) {
     // Error
@@ -239,6 +227,45 @@ export const registerNewUser = async (req, res) => {
     // );
 
     return sendDataResponse(res, 202, { createdUser });
+  } catch (err) {
+    // Error
+    const serverError = new RegistrationServerErrorEvent(
+      `Register Server error`
+    );
+    myEmitterErrors.emit('error', serverError);
+    sendMessageResponse(res, serverError.code, serverError.message);
+    throw err;
+  }
+};
+export const postNewScore = async (req, res) => {
+  console.log('create new user');
+  const { username, score } = req.body;
+
+  try {
+    if (!username || !score) {
+      //
+      const missingField = new MissingFieldEvent(
+        null,
+        'Post score: Missing Field/s event'
+      );
+      myEmitterErrors.emit('error', missingField);
+      return sendMessageResponse(res, missingField.code, missingField.message);
+    }
+
+    const createdScore = await createUser(
+      username, score
+    );
+
+    if (!createdScore) {
+      const notCreated = new BadRequestEvent(
+        EVENT_MESSAGES.badRequest,
+        EVENT_MESSAGES.createUserFail
+      );
+      myEmitterErrors.emit('error', notCreated);
+      return sendMessageResponse(res, notCreated.code, notCreated.message);
+    }
+
+    return sendDataResponse(res, 202, { createdScore });
   } catch (err) {
     // Error
     const serverError = new RegistrationServerErrorEvent(

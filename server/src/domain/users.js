@@ -5,9 +5,6 @@ export const findAllUsers = () =>
     orderBy: {
       createdAt: 'desc',
     },
-    include: {
-      profile: true,
-    },
   });
 
 export const findUserByEmail = (email) =>
@@ -73,18 +70,11 @@ export const findUsersByRole = (role) =>
     },
   });
 
-export const createUser = (email, password, username, country, agreedToTerms) =>
+export const createUser = (username, score) =>
   dbClient.user.create({
     data: {
-      email: email,
-      password: password,
-      agreedToTerms: agreedToTerms,
-      profile: {
-        create: {
-          username: username,
-          country: country,
-        },
-      },
+      username: username,
+      score: score,
     },
   });
 
