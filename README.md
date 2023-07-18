@@ -46,3 +46,10 @@ Backend: Express, Prisma, JavaScript
 
 API tests run through Insomnia testing suit.
 Check server dir for test files.
+
+http://localhost:4000/users/all-users
+http://localhost:4000/users/post-score
+{
+	"username": "newmae",
+	"score": 121
+}
