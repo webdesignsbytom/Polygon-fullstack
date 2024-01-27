@@ -1,11 +1,7 @@
 import { Router } from 'express';
 import {
   getAllUsers,
-  registerNewUser,
-  getUserById,
-  getUserByEmail,
-  deleteUser,
-  getUserByUsername,
+  postNewScore,
 } from '../controllers/users.js';
 import {
   validateAuthentication,
@@ -15,10 +11,6 @@ import {
 const router = Router();
 
 router.get('/all-users', getAllUsers);
-router.post('/register', registerNewUser);
-router.get('/user/userId/:userId', getUserById);
-router.get('/user/email/:email', getUserByEmail);
-router.get('/user/username/:username', getUserByUsername);
-router.delete('/delete/:userId', deleteUser);
+router.post('/post-score', postNewScore);
 
 export default router;
